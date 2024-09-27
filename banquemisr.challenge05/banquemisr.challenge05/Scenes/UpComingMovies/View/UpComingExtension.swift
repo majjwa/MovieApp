@@ -10,23 +10,30 @@ import UIKit
 extension UpComingMoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return upComingVM?.movieList.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else {
             fatalError("Unable to dequeue MoviesCollectionViewCell")
         }
-        
-        
+        let movie = upComingVM?.movieList[indexPath.item]
+        cell.movieTitle.text = movie?.title
+        cell.movieReleaseDate.text = movie?.releaseDate
+        let imagePath = "https://image.tmdb.org/t/p/w500" + (movie?.posterPath ?? "")
+        cell.movieImg.loadImage(from: imagePath)
         return cell
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-   if let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsScreenViewController") as? DetailsScreenViewController {
-               detailsVC.modalPresentationStyle = .pageSheet
-               present(detailsVC, animated: true)
-           }
+        if let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsScreenViewController") as? DetailsScreenViewController {
+            let movie = upComingVM?.movieList[indexPath.item]
+            detailsVC.movieId = movie?.id
+            
+            detailsVC.modalPresentationStyle = .pageSheet
+            present(detailsVC, animated: true)
+        }
       
         
     }

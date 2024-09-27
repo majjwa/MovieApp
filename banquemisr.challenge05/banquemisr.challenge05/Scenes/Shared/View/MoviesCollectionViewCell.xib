@@ -19,20 +19,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpK-2c-Tei">
                         <rect key="frame" x="0.0" y="59" width="416" height="258"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.doc.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mfT-ek-NAT">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.doc.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mfT-ek-NAT">
                                 <rect key="frame" x="0.0" y="0.3333333333333286" width="416" height="149.66666666666669"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TK6-Oq-eqV">
-                                <rect key="frame" x="18.999999999999996" y="172" width="45.666666666666657" height="21.666666666666657"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="TK6-Oq-eqV">
+                                <rect key="frame" x="12" y="172" width="50" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="releaseDateIcon" translatesAutoresizingMaskIntoConstraints="NO" id="o52-nZ-riz">
-                                <rect key="frame" x="19" y="209.33333333333331" width="10" height="10"/>
+                                <rect key="frame" x="16" y="211.66666666666669" width="10" height="10"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0e-jt-e9r">
-                                <rect key="frame" x="36" y="203.66666666666669" width="42" height="21"/>
+                                <rect key="frame" x="33" y="206" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -43,12 +43,12 @@
                             <constraint firstItem="o52-nZ-riz" firstAttribute="centerY" secondItem="W0e-jt-e9r" secondAttribute="centerY" id="2dm-GK-hHx"/>
                             <constraint firstItem="TK6-Oq-eqV" firstAttribute="top" secondItem="mfT-ek-NAT" secondAttribute="bottom" constant="22" id="3Wi-85-K7E"/>
                             <constraint firstItem="W0e-jt-e9r" firstAttribute="leading" secondItem="o52-nZ-riz" secondAttribute="trailing" constant="7" id="5x9-6e-BRA"/>
-                            <constraint firstItem="o52-nZ-riz" firstAttribute="leading" secondItem="hpK-2c-Tei" secondAttribute="leading" constant="19" id="6ys-IC-16h"/>
+                            <constraint firstItem="o52-nZ-riz" firstAttribute="leading" secondItem="hpK-2c-Tei" secondAttribute="leading" constant="16" id="6ys-IC-16h"/>
                             <constraint firstAttribute="trailing" secondItem="mfT-ek-NAT" secondAttribute="trailing" id="N6h-E1-aPM"/>
                             <constraint firstItem="mfT-ek-NAT" firstAttribute="height" secondItem="hpK-2c-Tei" secondAttribute="height" multiplier="0.5" constant="21" id="NQh-9X-TXK"/>
                             <constraint firstItem="mfT-ek-NAT" firstAttribute="top" secondItem="hpK-2c-Tei" secondAttribute="top" id="a4K-v9-ls4"/>
                             <constraint firstItem="W0e-jt-e9r" firstAttribute="top" secondItem="TK6-Oq-eqV" secondAttribute="bottom" constant="10" id="flO-UX-is7"/>
-                            <constraint firstItem="TK6-Oq-eqV" firstAttribute="leading" secondItem="hpK-2c-Tei" secondAttribute="leading" constant="19" id="oK6-cB-sZC"/>
+                            <constraint firstItem="TK6-Oq-eqV" firstAttribute="leading" secondItem="hpK-2c-Tei" secondAttribute="leading" constant="12" id="oK6-cB-sZC"/>
                             <constraint firstItem="mfT-ek-NAT" firstAttribute="leading" secondItem="hpK-2c-Tei" secondAttribute="leading" id="p0u-9u-mOr"/>
                         </constraints>
                     </view>

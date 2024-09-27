@@ -9,13 +9,16 @@ import UIKit
 
 class NowPlayingViewController: UIViewController {
     @IBOutlet weak var nowPlayingCV: UICollectionView!
+    var nowPlayingVM: NowPlayingViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        nowPlayingVM = NowPlayingViewModel()
         self.navigationController?.isNavigationBarHidden = true
         setupCollectionView()
-    
         nowPlayingCV.collectionViewLayout = UICollectionViewFlowLayout.createStandardFlowLayout()
-
+        nowPlayingVM?.getNowPlayingMovies {
+            self.nowPlayingCV.reloadData()
+                }
     }
     func setupCollectionView() {
         nowPlayingCV.delegate = self
