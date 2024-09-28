@@ -17,6 +17,9 @@ extension PopularViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else {
             fatalError("Unable to dequeue MoviesCollectionViewCell")}
+        cell.movieTitle.text = "Loading..."
+        cell.movieReleaseDate.text = "..."
+        cell.movieImg.image = UIImage(named: "loading")
             let movie = popularVM?.movieList[indexPath.item]
             cell.movieTitle.text = movie?.title
             cell.movieReleaseDate.text = movie?.releaseDate

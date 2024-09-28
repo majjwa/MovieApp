@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Foundation
 class DetailsScreenViewController: UIViewController {
     @IBOutlet weak var movieTime: UILabel!
     @IBOutlet weak var movieDescription: UITextView!
@@ -17,45 +17,55 @@ class DetailsScreenViewController: UIViewController {
     @IBOutlet weak var img1: UIImageView!
     var movieId: Int?
     var detailsScreenVM: DetailsScreenViewModel?
+
     override func viewDidLoad() {
+        super.viewDidLoad()
+        updateUIWithDefaultValues()
         self.img1.layer.cornerRadius = 13
         self.img1.layer.masksToBounds = true
         self.img2.layer.cornerRadius = 13
         self.img2.layer.masksToBounds = true
-        super.viewDidLoad()
-        setupErrorHandling()
         detailsScreenVM = DetailsScreenViewModel()
         self.navigationController?.isNavigationBarHidden = true
         if let movieId = movieId {
-            detailsScreenVM?.getMovieDetails(movieId: movieId) {
-                       self.updateUI()
+            detailsScreenVM?.getMovieDetails(movieId: movieId) { errorMessage in
+                self.updateUI()
+                if let message = errorMessage {
+                    self.showAlert(title: "Offline Mode", message: message)
                    }
-            
-               }
+                }
+            }
+        }
+    
+
+    func updateUIWithDefaultValues() {
+        movieTitle.text = "Loading..."
+        movieGenre.text = "N/A"
+        movieTime.text = "N/A"
+        movieReleaseDate.text = "N/A"
+        movieDescription.text = "N/A"
+        img1.image = UIImage(named: "loading")
+        img2.image = UIImage(named: "loading")
     }
-    func setupErrorHandling() {
-           detailsScreenVM?.onError = { [weak self] errorMessage in
-               self?.showAlert(title: "Error", message: errorMessage)
-           }
-       }
-    func updateUI(){
+
+    func updateUI() {
         movieTitle.text = detailsScreenVM?.movieDetails?.title
         movieGenre.text = detailsScreenVM?.movieDetails?.genres.first?.name
         movieTime.text = "\(detailsScreenVM?.movieDetails?.runtime ?? 0) min"
         if let releaseDate = detailsScreenVM?.movieDetails?.releaseDate {
-               let year = String(releaseDate.prefix(4))
-               movieReleaseDate.text = year
-           }   
+            let year = String(releaseDate.prefix(4))
+            movieReleaseDate.text = year
+        }
         movieDescription.text = detailsScreenVM?.movieDetails?.overview
         let imagePath2 = "https://image.tmdb.org/t/p/w500" + (detailsScreenVM?.movieDetails?.backdropPath ?? "")
         img2.loadImage(from: imagePath2)
         let imagePath1 = "https://image.tmdb.org/t/p/w500" + (detailsScreenVM?.movieDetails?.posterPath ?? "")
         img1.loadImage(from: imagePath1)
-
     }
-    
+
     @IBAction func dismissBtn(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
-    
+
+   
 }

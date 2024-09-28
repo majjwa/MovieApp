@@ -18,13 +18,20 @@ extension NowPlayingViewController: UICollectionViewDelegate, UICollectionViewDa
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else {
             fatalError("Unable to dequeue MoviesCollectionViewCell")
         }
-        let movie = nowPlayingVM?.movieList[indexPath.item]
-        cell.movieTitle.text = movie?.title
-        cell.movieReleaseDate.text = movie?.releaseDate
-        let imagePath = "https://image.tmdb.org/t/p/w500" + (movie?.posterPath ?? "")
-        cell.movieImg.loadImage(from: imagePath)
+        
+        cell.movieTitle.text = "Loading..."
+        cell.movieReleaseDate.text = "..."
+        cell.movieImg.image = UIImage(named: "loading")
+        if let movie = nowPlayingVM?.movieList[indexPath.item] {
+            cell.movieTitle.text = movie.title
+            cell.movieReleaseDate.text = movie.releaseDate
+            let imagePath = "https://image.tmdb.org/t/p/w500" + (movie.posterPath)
+            cell.movieImg.loadImage(from: imagePath)
+        }
+
         return cell
     }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsScreenViewController") as? DetailsScreenViewController {

@@ -17,6 +17,9 @@ extension UpComingMoviesViewController: UICollectionViewDelegate, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else {
             fatalError("Unable to dequeue MoviesCollectionViewCell")
         }
+        cell.movieTitle.text = "Loading..."
+        cell.movieReleaseDate.text = "..."
+        cell.movieImg.image = UIImage(named: "loading")
         let movie = upComingVM?.movieList[indexPath.item]
         cell.movieTitle.text = movie?.title
         cell.movieReleaseDate.text = movie?.releaseDate

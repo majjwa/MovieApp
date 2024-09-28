@@ -9,13 +9,12 @@ import Foundation
 class PopularViewModel{
     var networkService: NetworkService
     var movieList: [Movie] = []
-    var onError: ((String) -> Void)?
 
     init() {
         networkService = NetworkService()
     }
     
-    func getPopularMovies(completion: @escaping () -> Void) {
+    func getPopularMovies(completion: @escaping (String?) -> Void) {
         let endPoint = "movie/popular?language=en-US&page=1"
         networkService.getRequest(endPoint) { (result: Result<MoviesModel, Error>) in
             switch result {
@@ -23,7 +22,7 @@ class PopularViewModel{
                 self.movieList = moviesModel.results ?? []
                 MovieDataManager.shared.saveMovies(movies: self.movieList)
                 DispatchQueue.main.async {
-                    completion()
+                    completion(nil)
                 }
             case .failure(let error):
                 print("Error: \(error)")
@@ -32,12 +31,11 @@ class PopularViewModel{
                         switch result {
                         case .success(let movies):
                             self.movieList = movies
-                            completion()
+                            completion("You are offline. Data loaded from offline storage.")
                         case .failure(let fetchError):
+                            completion("Failed to load movies, Please check your network")
                             print("Error fetching from Core Data: \(fetchError)")
-                            DispatchQueue.main.async {
-                            self.onError?(error.localizedDescription)
-                                            }
+                            
                         
                         }
                     }

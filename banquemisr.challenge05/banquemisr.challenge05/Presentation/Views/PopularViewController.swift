@@ -13,19 +13,17 @@ class PopularViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        setupErrorHandling()
         popularVM = PopularViewModel()
         self.navigationController?.isNavigationBarHidden = true
         PopularCV.collectionViewLayout = UICollectionViewFlowLayout.createStandardFlowLayout()
-        popularVM?.getPopularMovies{
+        popularVM?.getPopularMovies{ errorMessage in
             self.PopularCV.reloadData()
+            if let message = errorMessage {
+                self.showAlert(title: "Offline Mode", message: message)
+            }
                 }
     }
-    func setupErrorHandling() {
-        popularVM?.onError = { [weak self] errorMessage in
-               self?.showAlert(title: "Error", message: errorMessage)
-           }
-       }
+    
     func setupCollectionView() {
         PopularCV.delegate = self
         PopularCV.dataSource = self

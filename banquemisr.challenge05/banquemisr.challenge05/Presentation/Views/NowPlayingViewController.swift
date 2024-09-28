@@ -12,22 +12,20 @@ class NowPlayingViewController: UIViewController {
     var nowPlayingVM: NowPlayingViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupErrorHandling()
         nowPlayingVM = NowPlayingViewModel()
         self.navigationController?.isNavigationBarHidden = true
         setupCollectionView()
         nowPlayingCV.collectionViewLayout = UICollectionViewFlowLayout.createStandardFlowLayout()
-        nowPlayingVM?.getNowPlayingMovies {
+        nowPlayingVM?.getNowPlayingMovies { errorMessage in
             self.nowPlayingCV.reloadData()
-                }
-    }
-    func setupErrorHandling() {
-        nowPlayingVM?.onError = { [weak self] errorMessage in
-            DispatchQueue.main.async {
-                           self?.showAlert(title: "Error", message: errorMessage)
-                       }
+            
+            if let message = errorMessage {
+                self.showAlert(title: "Offline Mode", message: message)
+            }
         }
-       }
+
+    }
+   
     func setupCollectionView() {
         nowPlayingCV.delegate = self
         nowPlayingCV.dataSource = self

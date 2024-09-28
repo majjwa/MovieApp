@@ -11,16 +11,13 @@ import UIKit
 extension UIImageView {
     func loadImage(from urlString: String?) {
         guard let urlString = urlString, let url = URL(string: urlString) else {
-            self.image = nil // Set to nil if the URL is invalid
+            self.image = nil
             return
         }
         
-        // Set a placeholder image if desired
-        self.image = UIImage(named: "placeholder") // Replace "placeholder" with your placeholder image name
+        self.image = UIImage(named: "loading")
         
-        // Fetch the image data in the background
         URLSession.shared.dataTask(with: url) { data, response, error in
-            // Check for errors and valid data
             if let error = error {
                 print("Error loading image: \(error.localizedDescription)")
                 return
@@ -31,10 +28,9 @@ extension UIImageView {
                 return
             }
             
-            // Update the image view on the main thread
             DispatchQueue.main.async {
                 self.image = image
             }
-        }.resume() // Start the task
+        }.resume()
     }
 }

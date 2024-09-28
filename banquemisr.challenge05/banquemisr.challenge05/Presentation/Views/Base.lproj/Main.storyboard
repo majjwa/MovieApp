@@ -103,10 +103,10 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie1" translatesAutoresizingMaskIntoConstraints="NO" id="1CX-pM-Ij4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1CX-pM-Ij4">
                                 <rect key="frame" x="0.0" y="103" width="393" height="223"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie2" translatesAutoresizingMaskIntoConstraints="NO" id="e3g-lm-6Xy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e3g-lm-6Xy">
                                 <rect key="frame" x="20" y="262" width="120" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="JgV-wc-WyS"/>
@@ -444,8 +444,6 @@
         <image name="arrowBack" width="20" height="20"/>
         <image name="calendar" width="16" height="16"/>
         <image name="clock" width="16" height="16"/>
-        <image name="movie1" width="375" height="211"/>
-        <image name="movie2" width="95" height="120"/>
         <image name="play.rectangle" catalog="system" width="128" height="93"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="sperator" width="90" height="4"/>

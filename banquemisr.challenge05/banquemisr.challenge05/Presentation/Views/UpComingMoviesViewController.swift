@@ -14,19 +14,17 @@ class UpComingMoviesViewController: UIViewController {
         super.viewDidLoad()
         upComingVM = UpComingViewModel()
         setupCollectionView()
-        setupErrorHandling()
 
         self.navigationController?.isNavigationBarHidden = true
         upComingCV.collectionViewLayout = UICollectionViewFlowLayout.createStandardFlowLayout()
-        upComingVM?.getUpComingMovies {
+        upComingVM?.getUpComingMovies { errorMessage in
             self.upComingCV.reloadData()
+            if let message = errorMessage {
+                self.showAlert(title: "Offline Mode", message: message)
+            }
         }
     }
-    func setupErrorHandling() {
-        upComingVM?.onError = { [weak self] errorMessage in
-               self?.showAlert(title: "Error", message: errorMessage)
-           }
-       }
+    
     func setupCollectionView() {
         upComingCV.delegate = self
         upComingCV.dataSource = self
