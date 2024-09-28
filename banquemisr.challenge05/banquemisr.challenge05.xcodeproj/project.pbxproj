@@ -22,7 +22,7 @@
 		136194EC2CA6FB7F00287A73 /* DetailsScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136194EB2CA6FB7F00287A73 /* DetailsScreenViewModel.swift */; };
 		136194EE2CA718B800287A73 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136194ED2CA718B800287A73 /* CoreDataManager.swift */; };
 		136194F02CA7190E00287A73 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136194EF2CA7190E00287A73 /* CoreDataHelper.swift */; };
-		136195022CA75B1600287A73 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136195012CA75B1600287A73 /* AlertExtension.swift */; };
+		136195042CA774BA00287A73 /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136195032CA774BA00287A73 /* AlertExtension.swift */; };
 		13A73EB62CA6025400E00D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A73EB52CA6025400E00D03 /* AppDelegate.swift */; };
 		13A73EB82CA6025400E00D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A73EB72CA6025400E00D03 /* SceneDelegate.swift */; };
 		13A73EBD2CA6025400E00D03 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 13A73EBC2CA6025400E00D03 /* Base */; };
@@ -73,7 +73,7 @@
 		136194EB2CA6FB7F00287A73 /* DetailsScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenViewModel.swift; sourceTree = "<group>"; };
 		136194ED2CA718B800287A73 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		136194EF2CA7190E00287A73 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
-		136195012CA75B1600287A73 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
+		136195032CA774BA00287A73 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		13A73EB22CA6025400E00D03 /* banquemisr.challenge05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = banquemisr.challenge05.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13A73EB52CA6025400E00D03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13A73EB72CA6025400E00D03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 				136194E12CA6F05600287A73 /* loadImageExtension.swift */,
 				13DB50F22CA62E990059906B /* CollectionViewExtension.swift */,
 				13DB50F82CA637A60059906B /* CollectionViewSetUpExtension.swift */,
-				136195012CA75B1600287A73 /* AlertExtension.swift */,
+				136195032CA774BA00287A73 /* AlertExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -433,7 +433,7 @@
 				136194F02CA7190E00287A73 /* CoreDataHelper.swift in Sources */,
 				136194EA2CA6FA3500287A73 /* MovieDetailsModel.swift in Sources */,
 				133D007C2CA62201009F2092 /* PopularViewController.swift in Sources */,
-				136195022CA75B1600287A73 /* AlertExtension.swift in Sources */,
+				136195042CA774BA00287A73 /* AlertExtension.swift in Sources */,
 				13DB50F32CA62E990059906B /* CollectionViewExtension.swift in Sources */,
 				13DB50F92CA637A60059906B /* CollectionViewSetUpExtension.swift in Sources */,
 				13DB50F12CA62D030059906B /* NowPlayingExtension.swift in Sources */,
