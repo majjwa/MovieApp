@@ -9,10 +9,9 @@ import Foundation
 class UpComingViewModel{
     var networkService: NetworkService
     var movieList: [Movie] = []
-
-    init() {
-        networkService = NetworkService()
-    }
+    init(networkService: NetworkService = .shared) {
+            self.networkService = networkService
+        }
     
     func getUpComingMovies(completion: @escaping (String?) -> Void) {
         let endPoint = "movie/upcoming?language=en-US&page=1"

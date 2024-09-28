@@ -7,11 +7,14 @@
 
 import Foundation
 
-protocol NetworkServiceProtocol {
-    func getRequest<T: Decodable>(_ endpoint: String, completion: @escaping (Result<T, Error>) -> Void)
-}
+//protocol NetworkServiceProtocol {
+//    func getRequest<T: Decodable>(_ endpoint: String, completion: @escaping (Result<T, Error>) -> Void)
+//}
 
-class NetworkService: NetworkServiceProtocol {
+class NetworkService{
+    public static let shared = NetworkService()
+    private init() {}
+    //Constants
     private let apiKey = "7c51949919649e5de3d2e5399e7a9b26"
     private let baseURL = "https://api.themoviedb.org/3/"
     

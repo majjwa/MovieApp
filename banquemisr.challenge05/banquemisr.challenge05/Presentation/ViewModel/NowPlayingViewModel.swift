@@ -10,9 +10,9 @@ class NowPlayingViewModel{
     var networkService: NetworkService
     var movieList: [Movie] = []
 
-    init() {
-        networkService = NetworkService()
-    }
+    init(networkService: NetworkService = .shared) {
+            self.networkService = networkService
+        }
     
     func getNowPlayingMovies(completion: @escaping (String?) -> Void) {
         let endPoint = "movie/now_playing?language=en-US&page=1"

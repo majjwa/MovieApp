@@ -10,9 +10,9 @@ class DetailsScreenViewModel {
     var networkService: NetworkService
     var movieDetails: MovieDetails?
 
-    init() {
-        networkService = NetworkService()
-    }
+    init(networkService: NetworkService = .shared) {
+            self.networkService = networkService
+        }
 
     func getMovieDetails(movieId: Int, completion: @escaping (String?) -> Void) {
         let endPoint = "movie/\(movieId)?language=en-US"

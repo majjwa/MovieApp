@@ -10,9 +10,9 @@ class PopularViewModel{
     var networkService: NetworkService
     var movieList: [Movie] = []
 
-    init() {
-        networkService = NetworkService()
-    }
+    init(networkService: NetworkService = .shared) {
+            self.networkService = networkService
+        }
     
     func getPopularMovies(completion: @escaping (String?) -> Void) {
         let endPoint = "movie/popular?language=en-US&page=1"
