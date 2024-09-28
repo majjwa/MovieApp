@@ -1,2 +1,2 @@
 # MovieApp
-This is a movie app 
+This is a movie app using swift for iOS
