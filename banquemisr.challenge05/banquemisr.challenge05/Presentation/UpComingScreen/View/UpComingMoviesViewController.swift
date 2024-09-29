@@ -12,17 +12,14 @@ class UpComingMoviesViewController: UIViewController {
     @IBOutlet weak var upComingCV: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        upComingVM = UpComingViewModel()
         setupCollectionView()
-
+        let repository = NetworkMoviesRepository()
+        let useCase = FetchUpComingMoviesUseCase(repository: repository)
+        upComingVM = UpComingViewModel(useCase: useCase)
         self.navigationController?.isNavigationBarHidden = true
         upComingCV.collectionViewLayout = UICollectionViewFlowLayout.createStandardFlowLayout()
-        upComingVM?.getUpComingMovies { errorMessage in
-            self.upComingCV.reloadData()
-            if let message = errorMessage {
-                self.showAlert(title: "Offline Mode", message: message)
-            }
-        }
+        fetchUpComingMovies()
+
     }
     
     func setupCollectionView() {
@@ -30,6 +27,15 @@ class UpComingMoviesViewController: UIViewController {
         upComingCV.dataSource = self
         upComingCV.RegisterNib(cell: MoviesCollectionViewCell.self)
        }
-
+    private func fetchUpComingMovies() {
+        upComingVM?.getUpComingMovies{ [weak self] errorMessage in
+            DispatchQueue.main.async {
+                self?.upComingCV.reloadData()
+                if let message = errorMessage {
+                    self?.showAlert(title: "Error", message: message)
+                }
+            }
+        }
+    }
    
 }

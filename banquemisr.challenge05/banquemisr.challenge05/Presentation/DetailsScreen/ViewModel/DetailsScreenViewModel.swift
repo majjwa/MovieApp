@@ -7,38 +7,27 @@
  import Foundation
 
 class DetailsScreenViewModel {
-    var networkService: NetworkService
+    private let fetchMovieDetailsUseCase: FetchMovieDetailsUseCase
     var movieDetails: MovieDetails?
+    var errorMessage: String?
 
-    init(networkService: NetworkService = .shared) {
-            self.networkService = networkService
-        }
+    init(useCase: FetchMovieDetailsUseCase) {
+        self.fetchMovieDetailsUseCase = useCase
+    }
 
     func getMovieDetails(movieId: Int, completion: @escaping (String?) -> Void) {
-        let endPoint = "movie/\(movieId)?language=en-US"
-        networkService.getRequest(endPoint) { (result: Result<MovieDetails, Error>) in
+        fetchMovieDetailsUseCase.execute(movieId: movieId) { result in
             switch result {
             case .success(let movieDetails):
                 self.movieDetails = movieDetails
-                MovieDataManager.shared.saveMovieDetails(movieDetails: self.movieDetails!)
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
+                completion(nil)
+                
             case .failure(let error):
-                DispatchQueue.main.async {
-                    MovieDataManager.shared.fetchMovieDetails(by: movieId) { result in
-                        switch result {
-                        case .success(let movieDetails):
-                            self.movieDetails = movieDetails
-                            completion("You are offline. Data loaded from offline storage.")
-                        case .failure(let fetchError):
-                            completion("Failed to load movies, Please check your network")
-                            print("Error: \(fetchError)")
-                          
-                        }
-                    }
-                }
+                print("Error: \(error)")
+                self.errorMessage = "Failed to load movies. Please check your network."
+                completion(self.errorMessage)
             }
         }
     }
+
 }

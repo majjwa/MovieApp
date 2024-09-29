@@ -6,43 +6,27 @@
 //
 
 import Foundation
-class PopularViewModel{
-    var networkService: NetworkService
-    var movieList: [Movie] = []
 
-    init(networkService: NetworkService = .shared) {
-            self.networkService = networkService
-        }
-    
+class PopularViewModel {
+    private let fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
+    var movieList: [Movie] = []
+    var errorMessage: String?
+    init(fetchPopularMoviesUseCase: FetchPopularMoviesUseCase) {
+        self.fetchPopularMoviesUseCase = fetchPopularMoviesUseCase
+    }
+
     func getPopularMovies(completion: @escaping (String?) -> Void) {
-        let endPoint = "movie/popular?language=en-US&page=1"
-        networkService.getRequest(endPoint) { (result: Result<MoviesModel, Error>) in
+        fetchPopularMoviesUseCase.execute { result in
             switch result {
-            case .success(let moviesModel):
-                self.movieList = moviesModel.results ?? []
-                MovieDataManager.shared.saveMovies(movies: self.movieList)
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
+            case .success(let movies):
+                self.movieList = movies
+                completion(nil)
+                
             case .failure(let error):
                 print("Error: \(error)")
-                DispatchQueue.main.async {
-                    MovieDataManager.shared.fetchMovies { result in
-                        switch result {
-                        case .success(let movies):
-                            self.movieList = movies
-                            completion("You are offline. Data loaded from offline storage.")
-                        case .failure(let fetchError):
-                            completion("Failed to load movies, Please check your network")
-                            print("Error fetching from Core Data: \(fetchError)")
-                            
-                        
-                        }
-                    }
-                }
+                self.errorMessage = "Failed to load movies. Please check your network."
+                completion(self.errorMessage)
             }
         }
     }
-
-    
 }

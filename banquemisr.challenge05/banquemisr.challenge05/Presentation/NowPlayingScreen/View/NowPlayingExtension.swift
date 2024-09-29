@@ -1,4 +1,3 @@
-//
 //  NowPlayingExtension.swift
 //  banquemisr.challenge05
 //
@@ -19,20 +18,20 @@ extension NowPlayingViewController: UICollectionViewDelegate, UICollectionViewDa
             fatalError("Unable to dequeue MoviesCollectionViewCell")
         }
         
-        cell.movieTitle.text = "Loading..."
-        cell.movieReleaseDate.text = "..."
-        cell.movieImg.image = UIImage(named: "loading")
         if let movie = nowPlayingVM?.movieList[indexPath.item] {
             cell.movieTitle.text = movie.title
             cell.movieReleaseDate.text = movie.releaseDate
             let imagePath = "https://image.tmdb.org/t/p/w500" + (movie.posterPath)
             cell.movieImg.loadImage(from: imagePath)
+        } else {
+            cell.movieTitle.text = "Loading..."
+            cell.movieReleaseDate.text = "..."
+            cell.movieImg.image = UIImage(named: "loading")
         }
 
         return cell
     }
 
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let detailsVC = storyboard?.instantiateViewController(withIdentifier: "DetailsScreenViewController") as? DetailsScreenViewController {
             let movie = nowPlayingVM?.movieList[indexPath.item]
@@ -42,7 +41,4 @@ extension NowPlayingViewController: UICollectionViewDelegate, UICollectionViewDa
             present(detailsVC, animated: true)
         }
     }
-
-    
-
 }

@@ -24,7 +24,7 @@ final class MovieDetailsTest: XCTestCase {
     }
     func testGetMovieDetailsSuccess() {
         let expectation = XCTestExpectation(description: "Completion handler invoked")
-        viewModel.getMovieDetails(movieId:957452 ) { errorMessage in
+        viewModel.getMovieDetails(movieId:957452) { errorMessage in
             XCTAssertNil(errorMessage, "Expected no error message")
             XCTAssertNotNil(self.viewModel.movieDetails, "Expected movie details to be populated")
             XCTAssertEqual(self.viewModel.movieDetails?.id, 957452, "Expected movie ID to match")

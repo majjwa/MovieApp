@@ -25,19 +25,25 @@ class DetailsScreenViewController: UIViewController {
         self.img1.layer.masksToBounds = true
         self.img2.layer.cornerRadius = 13
         self.img2.layer.masksToBounds = true
-        detailsScreenVM = DetailsScreenViewModel()
+        let repository = NetworkMoviesRepository()
+       let fetchMovieDetailsUseCase = FetchMovieDetailsUseCase(repository: repository)
+       detailsScreenVM = DetailsScreenViewModel(useCase: fetchMovieDetailsUseCase)      
         self.navigationController?.isNavigationBarHidden = true
         if let movieId = movieId {
-            detailsScreenVM?.getMovieDetails(movieId: movieId) { errorMessage in
-                self.updateUI()
-                if let message = errorMessage {
-                    self.showAlert(title: "Offline Mode", message: message)
-                   }
+                    fetchMovieDetails(for: movieId)
                 }
+        }
+    func fetchMovieDetails(for movieId: Int) {
+            detailsScreenVM?.getMovieDetails(movieId: movieId) { errorMessage in
+                DispatchQueue.main.async {
+                    self.updateUI()
+                    if let message = errorMessage {
+                        self.showAlert(title: "Offline Mode", message: message)
+                    }}
             }
         }
-    
 
+    
     func updateUIWithDefaultValues() {
         movieTitle.text = "Loading..."
         movieGenre.text = "N/A"
