@@ -7,10 +7,6 @@
 
 import Foundation
 
-//protocol NetworkServiceProtocol {
-//    func getRequest<T: Decodable>(_ endpoint: String, completion: @escaping (Result<T, Error>) -> Void)
-//}
-
 class NetworkService{
     public static let shared = NetworkService()
     private init() {}
